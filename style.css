@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family:  "Montserrat", sans-serif;
+
+
+}
+
+body{
+    background-color: antiquewhite;
+    width: 100%;
+    height: 100%;
+    padding: 50px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-items: center;
+    margin: 0 auto;
+}
+.movie-box{
+    display: grid;
+    grid-template-columns: repeat(5, 180px);
+    
+    width: 60%;
+    gap: 1px;
+    /* margin: 0 auto; */
+    /* transform: translateX(-50%); */
+    /* background-color: red; */
+
+}
+
+.movie-card{
+    /* width: 50%;
+    display: flex;
+    flex-wrap: wrap; */
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    margin: 0 auto;
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0,0.2); */
+    /* background-color: aquamarine; */
+}
+.movie-card:hover{
+    animation: scale 1s linear;
+    cursor: pointer;
+    background-color: black;
+    background-attachment: fixed;
+    color: white;
+    
+}
+@keyframes scale{
+    from{ 
+        transform: scale(1)
+    } to{
+        transform: scale(0.9)
+    }
+}
+h1{
+    margin: 20px 0px;
+    font-size: 70px;
+}
+h3{
+    font-size: 15px;
+    padding: 5px 4px;
+    font-weight: 600;
+}
+.movie-overview{
+    width: 100%; 
+    padding: 4px;
+    height: fit-content;
+    font-size: 10px;
+}
+img{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+    
+}
+.movie-image{
+  width: 150px;
+  height: 200px;
+  align-content: center;
+}
