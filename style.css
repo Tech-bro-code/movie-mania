@@ -12,23 +12,26 @@ font-family:  "Montserrat", sans-serif;
 }
 
 body{
-    background-color: antiquewhite;
-    width: 100%;
-    height: 100%;
+    background-color:rgb(255, 255, 255);
     padding: 50px 0px;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     align-items: center;
     place-items: center;
     margin: 0 auto;
 }
-.movie-box{
+main{
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+}
+main .movie-box{
     display: grid;
-    grid-template-columns: repeat(5, 180px);
-    
-    width: 60%;
-    gap: 1px;
-    /* margin: 0 auto; */
+    /* grid-template-columns: repeat(5, 180px); */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    width: min(60%, 32rem);
+    gap: 10px;
+    margin: 0 auto;
     /* transform: translateX(-50%); */
     /* background-color: red; */
 
@@ -39,7 +42,10 @@ body{
     display: flex;
     flex-wrap: wrap; */
     width: 100%;
+    border: 1px solid rgba(102, 99, 99, 0.17);
+    position: relative;
     height: 100%;
+
     padding: 10px;
     margin: 0 auto;
     /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0,0.2); */
@@ -49,32 +55,54 @@ body{
     animation: scale 1s linear;
     cursor: pointer;
     background-color: black;
-    background-attachment: fixed;
-    color: white;
+
     
 }
 @keyframes scale{
-    from{ 
+    from{
         transform: scale(1)
     } to{
         transform: scale(0.9)
     }
 }
 h1{
-    margin: 20px 0px;
+    margin: 25px 0px;
     font-size: 70px;
+    color: gold;
+    text-align: center;
+    background-image: url(flame.gif);
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+}  
+h2{
+    padding: 15px 0px;
+    text-align: center;
+    font-size: 25px;
 }
 h3{
     font-size: 15px;
     padding: 5px 4px;
     font-weight: 600;
+    color: rgb(255, 25, 25);
 }
-.movie-overview{
-    width: 100%; 
-    padding: 4px;
-    height: fit-content;
-    font-size: 10px;
+#watchlist{
+    margin-top: 50px ;
+    text-align: center;
 }
+#watchlist a{
+   text-align: center;
+   display: inline;
+   text-transform: uppercase;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(0, 255, 102);
+}
+
 img{
     width: 100%;
     height: 100%;
@@ -82,8 +110,225 @@ img{
     display: block;
     
 }
+.fav-list{
+    width: 40%;
+    margin: 10px auto;
+    padding: 10px 0px;
+    height: 100%;
+    border: 1px solid black;
+}
+.img-list{
+    width: 550px;
+    height: 750px;
+    border-radius: 5px;
+}
+.title-list{
+    font-size: 20px;
+    color: crimson;
+   padding: 5px;
+}
+.view-list{
+    font-size: 14px;
+    text-align: justify;
+     padding: 4px 60px 8px 60px;
+}
+.rmv-list{
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+.fav-list .list-card{
+    /*display: grid;
+    /* grid-template-columns: repeat(5, 180px); */
+    /*grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    width: 60%;
+    gap: 10px;
+    margin: 0 auto;*/
+}
+#movie-details{
+    /* width: 60%; */
+    /* margin: 0 auto; */
+    /* display: flex; */
+
+}
+#movie-details .master{
+    display: flex;
+    justify-content: space-between;
+   width: 60%;
+   align-items: center;
+   margin: 0 auto;
+}
+
+
+#movie-details img.img-more, .img-more{
+    width: 550px;
+    height: 550px;
+    margin: 20px;
+    /* padding: 10px; */
+}
+#movie-details h2{
+    font-size:50px;
+    color: crimson;
+    padding-bottom: 10px;
+    font-weight: 800;
+    text-align: left;
+}
+#movie-details .para1{
+    font-size: 16px;
+    padding: 4px 0px 6px 0px;
+    color: rgb(16, 16, 15);
+    font-weight: 500;
+    text-align: justify;
+    line-height: 1.2;
+}
+
+#movie-details .para2{
+    font-size: 14px;
+    color: rgb(4, 85, 19);
+    padding-top: 5px; 
+}
+#movie-details .para3{
+    font-size: 12px;;
+    padding-top: 5px;
+    color: crimson;
+    
+   
+    
+}
+
+#movie-details .back-home{
+    font-size: 14px;
+    display: block;
+    color: rgb(110, 20, 4);
+    padding-top: 5px;
+}
+#movie-details .back-home:hover{
+    font-size: 18px;
+    font-weight: 700;
+}
 .movie-image{
   width: 150px;
   height: 200px;
   align-content: center;
+ }
+ /*
+#search-bar{
+
+} */
+a .seemore{
+    font-size: 12px;
+    color: skyblue;
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    text-align: right;
+    padding: 2px 4px;
+    text-transform: capitalize;
 }
+a .seemore:hover{
+    font-size: 14px;
+    color:skyblue;
+    font-weight: 700;
+}
+button.btn-list{
+    outline: none;
+    border: none;
+    width: 100%;
+    display: block;
+    font-size: 12px;
+    padding: 5px;
+    font-weight: 500;
+    background-color: gold;
+    width: 80%;
+    margin-top: 5px;
+     bottom: 0;
+     left: 50%;
+     transform: translateX(-50%);
+    position: absolute;
+
+
+}
+.movie-overview{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    padding: 0px 4px;
+    margin-top: -4px;
+    color: #11cb71;
+}
+form{
+    width: 50%;
+    display: flex;
+    margin: 20px auto;
+    margin-top: 35px;
+}
+form .input-field{
+    width: 80%;
+    padding-left: 20px;
+    border-radius: 4px 0px 0px 4px;
+    /* display: block; */
+    font-size: 14px;
+    border: 1px solid black;
+
+    background-color: transparent;
+}
+form input::placeholder{
+    background-color: none;
+    color: gold;
+}
+form .submit-btn{
+    display: block;
+    padding: 15px 25px;
+    font-size: 14px;
+    font-weight: 800;
+    outline: none;
+    background-color: black;
+    color: gold;
+    margin-left: -2px;
+    border-radius:0px  4px 4px 0px;
+
+
+}
+main > hr{
+    margin-top: 45px;
+}
+footer{
+    color: rgb(80, 69, 3);
+    text-align: center;
+    padding: 20px;
+}
+footer p a{
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 500;
+    color: chocolate;
+    font-size: 12px;
+}
+@media screen and (max-width: 1065px) {
+    main .movie-box{
+        width: 80%;
+    }
+    form{
+        width: 60%;
+    }
+    .movie-image{
+        width: 120px;
+        height: 180px;
+        
+    }
+    
+main .movie-box{
+    display: grid;
+    /* grid-template-columns: repeat(5, 180px); */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 5px;
+    margin: 0 auto;
+    /* transform: translateX(-50%); */
+    /* background-color: red; */
+
+}
+} 

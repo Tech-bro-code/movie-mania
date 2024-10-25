@@ -1,5 +1,6 @@
 const API_KEY = "fbe17a3e20b5937ebb1fd56062650fc1";
 const def = "https://api.themoviedb.org/3";
+const SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 const shows = {
   fetchTrending: `${def}/trending/all/week?api_key=${API_KEY}&language=en-US`,
@@ -21,7 +22,7 @@ const shows = {
 
 const fetchMovies = async () =>{
     try {
-        const response = await fetch(`${shows.fetchComedyMovies}`);
+        const response = await fetch(`${shows.fetchTrending}`);
         const result = await response.json();
         return result.results;
         // console.log(result);
@@ -31,9 +32,9 @@ const fetchMovies = async () =>{
     }
 };
 //rendering all movies on the webpage from the endpoints.
-
+ const moviesList = document.querySelector('.movie-box');
 const showMovies = (results) => {
-    const moviesList = document.querySelector('.movie-box');
+   
     
     results.forEach(movie =>{
 
@@ -48,24 +49,80 @@ const showMovies = (results) => {
 
        const movieTitle = document.createElement('h3');
        movieTitle.classList.add('movie-title');
-       movieTitle.textContent = movie.title;
+       movieTitle.textContent = movie.original_title;
 
-       const movieOverview = document.createElement('p');
-       movieOverview.classList.add('movie-overview');
-       movieOverview.textContent = movie.genre_ids;
+       const MovieOverview = document.createElement('p');
+    MovieOverview.classList.add('movie-overview');
+    MovieOverview.textContent = movie.overview;
 
-       const movieRating = document.createElement('p');
-       movieRating.classList.add('movie-rating');
-       movieRating.textContent = `Ratings: ${movie.vote_average}`;
+       const movieMore = document.createElement('a');
+       movieMore.classList.add('seemore');
+       movieMore.innerHTML = `<a class="seemore" href="seemore.html?id=${movie.id}">Read more</a>`;
+
+
+//        const waList = document.querySelector('.list-btn')
+//        waList.innerHTML = `<button class="bg-amber-500 text-white py-1 px-2 rounded" onclick="addToWatchlist(${
+//         movie.id
+//       }, '${movie.title}', '${movie.poster_path}', '${
+// movie.overview
+// }')">Add to Watchlist</button>`;
+
+  const movieWatchList = document.createElement('button');
+  movieWatchList.classList.add('btn-list');
+  movieWatchList.textContent = 'Add to Watchlist'
+    movieWatchList.addEventListener('click', () => {
+      addToWatchlist(movie.id, movie.title, movie.poster_path, movie.overview);
+    })
+
 
        movieCard.appendChild(movieImage);
        movieCard.appendChild(movieTitle);
-       movieCard.appendChild(movieOverview);
-       movieCard.appendChild(movieRating);
-
+       movieCard.appendChild(MovieOverview);
+       movieCard.appendChild(movieMore);
+       movieCard.appendChild(movieWatchList);
        moviesList.append(movieCard);
     });
 };
+
+
+
+function addToWatchlist(id, title, poster_path, overview) {
+  const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+  
+  if (!watchlist.some((movie) => movie.id === id)) {
+    const movie = { id, title, poster_path, overview };
+    watchlist.push(movie);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    alert(`${title} has been added to your watchlist.`);
+  } else {
+    alert("Movie is already in your watchlist.");
+  }
+};
+
+
+async function searchMovies(query) {
+  moviesList.innerHTML = "";
+  try {
+    const response = await fetch(`${SEARCH_URL}${encodeURIComponent(query)}`);
+    const data = await response.json();
+    console.log(data.results);
+    const movies = data.results;
+    showMovies(movies);
+  } catch (error) {
+    console.error("Error fetching search results", error);
+  }
+};
+
+
+document
+  .getElementById("search-bar")
+  .addEventListener("submit", function (x) {
+    x.preventDefault();
+    const query = document.getElementById("search-input").value;
+    if (query) {
+      searchMovies(query);
+    }
+  });
 
 //fetch and display on load of page
 
@@ -73,4 +130,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const listOfMovies = await fetchMovies();
     showMovies(listOfMovies);
     
-})
+});
+
+  
+  
+/*document.addEventListener('DOMContentLoaded', async () => {
+  const listOfMovies = await fetchMovies();
+  showMovies(listOfMovies);
+  
+});*/
+  
+//   fetchTrendingMovies();
